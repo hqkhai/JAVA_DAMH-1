@@ -137,7 +137,7 @@ public class Dictionary {
    
    public boolean addNewSlangWord(String key, String def){
        //String definition = Dictionary.get(key);
-       if(!Dictionary.containsKey(key)){
+       if(!this.existSlangWord(key)){
            Dictionary.put(key, def);
            return true;
        }
@@ -153,7 +153,7 @@ public class Dictionary {
            i++;
            key_dup = key + "("+i+")";
            
-       }while(Dictionary.containsKey(key_dup));
+       }while(this.existSlangWord(key_dup));
        Dictionary.put(key_dup, def);
    }
    
@@ -163,5 +163,11 @@ public class Dictionary {
    }
    
    
+   public boolean existSlangWord(String key){
+       return Dictionary.containsKey(key);
+   }
    
+   public void deleteSlangWord(String key){
+       Dictionary.remove(key);
+   }
 }

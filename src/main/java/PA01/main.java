@@ -62,9 +62,11 @@ public class main {
                             switch(choice){
                                 case 1:
                                     d.duplicateSlangWord(key, def);
+                                    System.out.println("Slang word duplicated");
                                     break;
                                 case 2:
                                     d.overWriteSlangWord(key, def);
+                                    System.out.println("Slang word overwrited");
                                     break;
                                 default:
                                     System.out.println("\nInvalid input\n");
@@ -77,10 +79,36 @@ public class main {
 
                     case 5:
                         
+                        input.nextLine();
+                        System.out.print("Enter the key: ");
+                        key = input.nextLine();
+                        
+                        if(!d.existSlangWord(key)){
+                            System.out.println("Slang word does not exist");
+                            break;
+                        }
+                        
+                        System.out.print("Enter the definition: ");
+                        def = input.nextLine();
+                        
+                        d.overWriteSlangWord(key, def);
+                        System.out.println("Slang word updated");
+                        d.ExportToTxt("Slang.txt");
                         break;
                         
                     case 6:
+                        input.nextLine();
+                        System.out.print("Enter the key: ");
+                        key = input.nextLine();
                         
+                        if(!d.existSlangWord(key)){
+                            System.out.println("Slang word does not exist");
+                            break;
+                        }
+                        
+                        d.deleteSlangWord(key);
+                        System.out.println("Slang word deleted");
+                        d.ExportToTxt("Slang.txt");
                         break;
                     case 7:
                         
