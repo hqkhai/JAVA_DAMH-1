@@ -43,8 +43,35 @@ public class main {
                         break;
 
                     case 4:
-
                         
+                        input.nextLine();
+                        System.out.print("Enter the key: ");
+                        key = input.nextLine();
+                        System.out.print("Enter the definition: ");
+                        def = input.nextLine();
+                        boolean add = d.addNewSlangWord(key, def);
+                        if(add){
+                            System.out.println("Add new slang word successfully");
+                        }
+                        else{
+                            System.out.println("Already have this slang word. Please choose 1 below");
+                            System.out.println("1.Duplicate");
+                            System.out.println("2.Overwrite");
+                            System.out.print("Enter your choice: ");
+                            int choice = input.nextInt();
+                            switch(choice){
+                                case 1:
+                                    d.duplicateSlangWord(key, def);
+                                    break;
+                                case 2:
+                                    d.overWriteSlangWord(key, def);
+                                    break;
+                                default:
+                                    System.out.println("\nInvalid input\n");
+                                    break;  
+                            }
+                        }
+                        d.ExportToTxt("Slang.txt");
                         break;
 
 

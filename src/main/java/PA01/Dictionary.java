@@ -40,7 +40,23 @@ public class Dictionary {
         catch (IOException e){}
    }
    
-   
+   public void ExportToTxt(String filename){
+       try
+        {  
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                   new FileOutputStream(filename),"UTF-8"));
+           bw.write("Slag`Meaning");
+           bw.newLine();
+           for(Entry<String, String> entry: Dictionary.entrySet()){
+                String slangword = entry.getKey()+"`"+entry.getValue();
+                bw.write(slangword);
+                bw.newLine();
+            }
+        }
+        catch (UnsupportedEncodingException e) {}
+        catch (FileNotFoundException e){}
+        catch (IOException e){}
+   }
    public void SaveHistory(ArrayList<String> keys){
        try{
            
@@ -55,7 +71,7 @@ public class Dictionary {
                str = br.readLine();
            }
            br.close();
-           System.out.println(oldKeys);
+           //System.out.println(oldKeys);
            
            
            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
@@ -118,6 +134,34 @@ public class Dictionary {
        SaveHistory(keys);
  
    }
+   
+   public boolean addNewSlangWord(String key, String def){
+       //String definition = Dictionary.get(key);
+       if(!Dictionary.containsKey(key)){
+           Dictionary.put(key, def);
+           return true;
+       }
+       else{
+           return false;
+       }
+   }
+   
+   public void duplicateSlangWord(String key, String def){
+       int i = 0;
+       String key_dup;
+       do{
+           i++;
+           key_dup = key + "("+i+")";
+           
+       }while(Dictionary.containsKey(key_dup));
+       Dictionary.put(key_dup, def);
+   }
+   
+   
+   public void overWriteSlangWord(String key, String def){
+       Dictionary.put(key, def);
+   }
+   
    
    
 }
