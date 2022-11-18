@@ -52,6 +52,7 @@ public class Dictionary {
                 bw.write(slangword);
                 bw.newLine();
             }
+           bw.close();
         }
         catch (UnsupportedEncodingException e) {}
         catch (FileNotFoundException e){}
@@ -169,5 +170,24 @@ public class Dictionary {
    
    public void deleteSlangWord(String key){
        Dictionary.remove(key);
+   }
+   
+   
+   public void resetSlangWord(String current, String origin){
+       try{
+           BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(origin)));
+           
+           BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                   new FileOutputStream(current),"UTF-8"));
+           String str;
+           while( (str=br.readLine()) != null ){
+               bw.write(str);
+               bw.newLine();
+           }
+           bw.flush();
+           bw.close();
+           br.close();
+       }
+       catch(IOException e){}
    }
 }

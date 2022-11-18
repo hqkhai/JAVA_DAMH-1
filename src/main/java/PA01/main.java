@@ -111,12 +111,21 @@ public class main {
                         d.ExportToTxt("Slang.txt");
                         break;
                     case 7:
+                        d.resetSlangWord("Slang.txt", "SlangOrigin.txt");
+                        d.ImportFromTxt("Slang.txt");
+                        System.out.println("Reset Successfully");
+                        break;
+                    case 8:
                         
                         break;
+                        
                     case 9:
                         
                         break;
-
+                    
+                    case 10:
+                        
+                        break;
                     default:
                         System.out.println("\nInvalid input\n");
                         break;
