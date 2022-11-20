@@ -140,7 +140,15 @@ public class main {
                     
                     case 10:
                         
-                        d.QuizDefinition();
+                        correctAnswer = d.randomSlangWord();
+                        
+                        answers = d.QuizDefinition(correctAnswer);
+                        
+                        question = "Meaning: " + d.getDef(correctAnswer) +"\nChoose the correct slang word";
+                        
+                        shuffle(answers);
+                        
+                        displayQuiz(question, answers, correctAnswer);
                         break;
                         
                     default:

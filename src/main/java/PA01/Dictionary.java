@@ -150,14 +150,8 @@ public class Dictionary {
    }
    
    public void duplicateSlangWord(String key, String def){
-       int i = 0;
-       String key_dup;
-       do{
-           i++;
-           key_dup = key + "("+i+")";
-           
-       }while(this.existSlangWord(key_dup));
-       Dictionary.put(key_dup, def);
+       String def_dup = def + " | " + Dictionary.get(key);
+       Dictionary.put(key, def_dup);
    }
    
    
@@ -205,15 +199,6 @@ public class Dictionary {
         return keyList.get(randIdx);
    }
    
-   public void Shuffle(String [] answers){
-       int size = answers.length;
-       for(int i=0;i<size;i++){
-           int randIdx = new Random().nextInt(size);
-           String temp = answers[i];
-           answers[i] = answers[randIdx];
-           answers[randIdx] = temp;
-       }
-   }
    
    public String getDef(String key){
        return Dictionary.get(key);
@@ -237,45 +222,11 @@ public class Dictionary {
        }
        return answers;
        
-       /*
-       this.Shuffle(answers);
-       
-       
-       
-       System.out.println("What is the meaning of " + question + " ?");
-       
-       //System.out.println(question);
-       for(i=0;i<answers.length;i++){
-           char c = (char) ((int)'A' + i);
-           System.out.println(c + " " + answers[i]);
-       }
-       Scanner sc = new Scanner(System.in);
-       
-       do{
-           System.out.print("Answer your question: ");
-           char option = Character.toLowerCase(sc.next().charAt(0));
-
-           if((int)option < (int)'a' || (int)option > (int)'d'){
-               System.out.println("Invalid input");
-               continue;
-           }
-           if(correctAnswer == answers[(int)option - (int)'a']){
-               System.out.println("Correct Answer");
-           }
-           else{
-               System.out.println("Wrong Answer");
-               System.out.println("The answer is " + correctAnswer);
-           }
-           break;
-       }while(true);
-       
-       
-       */
    }
    
-   public String [] QuizDefinition(){
-       String correctAnswer = randomSlangWord();
-       String question = Dictionary.get(correctAnswer);
+   public String [] QuizDefinition(String correctAnswer){
+       
+       //String question = Dictionary.get(correctAnswer);
        
        String [] answers;
        answers = new String[4];
@@ -292,39 +243,5 @@ public class Dictionary {
            i++;
        }
        return answers;
-       /*
-       this.Shuffle(answers);
-       
-       
-       System.out.println("Meaning: " + question);
-       System.out.println("Choose the correct slang word");
-       
-       //System.out.println(question);
-       for(i=0;i<answers.length;i++){
-           char c = (char) ((int)'A' + i);
-           System.out.println(c + " " + answers[i]);
-       }
-       Scanner sc = new Scanner(System.in);
-       
-       do{
-           System.out.print("Answer your question: ");
-           char option = Character.toLowerCase(sc.next().charAt(0));
-
-           if((int)option < (int)'a' || (int)option > (int)'d'){
-               System.out.println("Invalid input");
-               continue;
-           }
-           if(correctAnswer == answers[(int)option - (int)'a']){
-               System.out.println("Correct Answer");
-           }
-           else{
-               System.out.println("Wrong Answer");
-               System.out.println("The answer is " + correctAnswer);
-           }
-           break;
-       }while(true);
-       
-       
-       */
    }
 }
