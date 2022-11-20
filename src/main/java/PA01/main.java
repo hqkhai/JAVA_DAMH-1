@@ -2,6 +2,7 @@
 
 package PA01;
 import java.io.*;
+import java.util.Random;
 import java.util.Scanner;
 
 public class main {
@@ -116,14 +117,18 @@ public class main {
                         System.out.println("Reset Successfully");
                         break;
                     case 8:
-                        
+                        String randomKey = d.randomSlangWord();
+                        System.out.println("Slang word: " + randomKey);
+                        d.findDefByWord(randomKey);
                         break;
                         
                     case 9:
                         
+                        d.QuizSlangWord();
                         break;
                     
                     case 10:
+                        
                         
                         break;
                     default:
@@ -148,4 +153,43 @@ public class main {
             System.out.println("11: Exit");
             System.out.print("Enter your selection : ");
 	}
+    
+    public static void shuffle(String [] answers){
+       int size = answers.length;
+       for(int i=0;i<size;i++){
+           int randIdx = new Random().nextInt(size);
+           String temp = answers[i];
+           answers[i] = answers[randIdx];
+           answers[randIdx] = temp;
+       }
+   }
+    
+    public static void displayQuiz(String question, String [] answers, String correctAnswer){
+        System.out.println(question);
+       
+       //System.out.println(question);
+       for(int i=0;i<answers.length;i++){
+           char c = (char) ((int)'A' + i);
+           System.out.println(c + " " + answers[i]);
+       }
+       Scanner sc = new Scanner(System.in);
+       
+       do{
+           System.out.print("Answer your question: ");
+           char option = Character.toLowerCase(sc.next().charAt(0));
+
+           if((int)option < (int)'a' || (int)option > (int)'d'){
+               System.out.println("Invalid input");
+               continue;
+           }
+           if(correctAnswer == answers[(int)option - (int)'a']){
+               System.out.println("Correct Answer");
+           }
+           else{
+               System.out.println("Wrong Answer");
+               System.out.println("The answer is " + correctAnswer);
+           }
+           break;
+       }while(true);
+    }
 }
