@@ -123,14 +123,26 @@ public class main {
                         break;
                         
                     case 9:
+                        randomKey = d.randomSlangWord();
                         
-                        d.QuizSlangWord();
+                        String correctAnswer = d.getDef(randomKey);
+                        
+                        String [] answers = d.QuizSlangWord(randomKey);
+                        answers[0] = correctAnswer;
+                        
+                        String question = "What is the meaning of " + randomKey +  "?";
+                        
+                        shuffle(answers);
+                        
+                        displayQuiz(question, answers, correctAnswer);
+                        
                         break;
                     
                     case 10:
                         
-                        
+                        d.QuizDefinition();
                         break;
+                        
                     default:
                         System.out.println("\nInvalid input\n");
                         break;

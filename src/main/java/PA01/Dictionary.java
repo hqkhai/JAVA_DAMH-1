@@ -215,25 +215,29 @@ public class Dictionary {
        }
    }
    
+   public String getDef(String key){
+       return Dictionary.get(key);
+   }
    
-   public void QuizSlangWord(){
-       String question = randomSlangWord();
+   
+   public String[] QuizSlangWord(String random){
+       //String question = randomSlangWord();
        
        String [] answers;
        answers = new String[4];
        
-       String correctAnswer = Dictionary.get(question);
-       answers[0] = correctAnswer;
-       
        int i = 1;
        while(i<answers.length){
            String choice = randomSlangWord();
-           if(choice!=question)
+           if(choice!=random)
                 answers[i] = Dictionary.get(choice);
            else
                continue;
            i++;
        }
+       return answers;
+       
+       /*
        this.Shuffle(answers);
        
        
@@ -266,8 +270,61 @@ public class Dictionary {
        }while(true);
        
        
-       
+       */
    }
    
-   
+   public String [] QuizDefinition(){
+       String correctAnswer = randomSlangWord();
+       String question = Dictionary.get(correctAnswer);
+       
+       String [] answers;
+       answers = new String[4];
+       
+       answers[0] = correctAnswer;
+       
+       int i = 1;
+       while(i<answers.length){
+           String choice = randomSlangWord();
+           if(choice!=correctAnswer)
+                answers[i] = choice;
+           else
+               continue;
+           i++;
+       }
+       return answers;
+       /*
+       this.Shuffle(answers);
+       
+       
+       System.out.println("Meaning: " + question);
+       System.out.println("Choose the correct slang word");
+       
+       //System.out.println(question);
+       for(i=0;i<answers.length;i++){
+           char c = (char) ((int)'A' + i);
+           System.out.println(c + " " + answers[i]);
+       }
+       Scanner sc = new Scanner(System.in);
+       
+       do{
+           System.out.print("Answer your question: ");
+           char option = Character.toLowerCase(sc.next().charAt(0));
+
+           if((int)option < (int)'a' || (int)option > (int)'d'){
+               System.out.println("Invalid input");
+               continue;
+           }
+           if(correctAnswer == answers[(int)option - (int)'a']){
+               System.out.println("Correct Answer");
+           }
+           else{
+               System.out.println("Wrong Answer");
+               System.out.println("The answer is " + correctAnswer);
+           }
+           break;
+       }while(true);
+       
+       
+       */
+   }
 }
