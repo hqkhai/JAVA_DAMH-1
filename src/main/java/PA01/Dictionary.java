@@ -105,8 +105,9 @@ public class Dictionary {
            System.out.println("HISTORY");
            do{
                 str = br.readLine();
+                if(str==null) break;
                 System.out.println(str);
-           }while(str!=null);
+           }while(true);
            br.close();
        }
        catch(IOException e){}

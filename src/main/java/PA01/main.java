@@ -107,10 +107,27 @@ public class main {
                             break;
                         }
                         
-                        d.deleteSlangWord(key);
-                        System.out.println("Slang word deleted");
-                        d.ExportToTxt("Slang.txt");
+                        char confirm;
+                        do{
+                            System.out.print("Confirm(Y/N): ");
+                            confirm = Character.toLowerCase(input.next().charAt(0));
+                            if(confirm == 'y'){
+                                d.deleteSlangWord(key);
+                                System.out.println("Slang word deleted");
+                                d.ExportToTxt("Slang.txt");
+                                break;    
+                            }
+                            else if (confirm == 'n'){
+                                System.out.println("Not delete Slang word");
+                                break;
+                            }
+                            else{
+                                System.out.println("Invalid input");
+                            }
+                        }
+                        while(true);
                         break;
+                        
                     case 7:
                         d.resetSlangWord("Slang.txt", "SlangOrigin.txt");
                         d.ImportFromTxt("Slang.txt");
@@ -150,7 +167,8 @@ public class main {
                         
                         displayQuiz(question, answers, correctAnswer);
                         break;
-                        
+                    case 11:
+                        break;
                     default:
                         System.out.println("\nInvalid input\n");
                         break;
